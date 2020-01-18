@@ -37,7 +37,7 @@ else
     echo  "127.0.0.1  `hostname`"  >   /etc/hosts 
 fi
 
-### setup yum source 
+### setupyum source 
 mkdir /etc/yum.repos.d/backup
 mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
 #mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
@@ -51,40 +51,32 @@ fi
 sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
 yum clean all
 yum makecache
-yum install -y epel-release
+yum -y install epel-release
 
 ### install necessary packages
 yum install psmisc gc gcc-c++  telnet  unzip vim curl  zip unzip -y  &>/dev/null
 yum install lrzsz lsof   sysstat dos2unix tree wget file tcpdump dstat fping iotop mtr rsync   expect  -y &>/dev/null
-yum -y install epel-release
- yum -y install gcc                     # C编译器
- yum -y install gcc-c++                 # C++编译器
- yum -y install gcc-gfortran            # Fortran编译器
- yum -y install compat-gcc-44           # 兼容gcc 4.4
- yum -y install compat-gcc-44-c++       # 兼容gcc-c++ 4.4
- yum -y install compat-gcc-44-gfortran  # 兼容gcc-fortran 4.4
- yum -y install compat-libf2c-34        # g77 3.4.x兼容库
- yum -y install make
- yum -y install gdb     # 代码调试器
- yum -y install cmake   # Cmake
- yum -y install git     # 版本控制
- yum -y install git-svn # git的svn插件
- yum -y install ntfs-3g
- yum -y install java
- yum -y install clang             # clang编译器
- yum -y install clang-analyzer    # clang静态分析器
- yum -y install openmpi openmpi-devel
- yum -y install mpich mpich-devel
- yum -y install perl-Parallel-ForkManager
- yum -y install gcc-gfortran gcc-g++ lapack-devel fftw-devel openmpi3-devel wget rsync
- yum -y install rpm-build gcc openssl openssl-devel libssh2-devel pam-devel numactl numactl-devel
- yum install -y hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel gtk2-devel man2html
- yum -y install libgcrypt*
- yum -y install python2-cryptography*
- yum -y install readline-devel
- yum -y install pam-devel
- yum -y install -y libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
- yum -y install glibc.i686
+yum -y install make
+yum -y install gdb     # 代码调试器
+yum -y install cmake   # Cmake
+yum -y install git     # 版本控制
+yum -y install git-svn # git的svn插件
+yum -y install ntfs-3g
+yum -y install java
+yum -y install clang             # clang编译器
+yum -y install clang-analyzer    # clang静态分析器
+yum -y install openmpi openmpi-devel
+yum -y install mpich mpich-devel
+yum -y install perl-Parallel-ForkManager
+yum -y install gcc-gfortran gcc-g++ lapack-devel fftw-devel openmpi3-devel wget rsync
+yum -y install rpm-build gcc openssl openssl-devel libssh2-devel pam-devel numactl numactl-devel
+yum -y install hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel gtk2-devel man2html
+yum -y install libgcrypt*
+yum -y install python2-cryptography*
+yum -y install readline-devel
+yum -y install pam-devel
+yum -y install libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
+yum -y install glibc.i686
 yum -y install libgcrypt*
 yum -y install python2-cryptography*
 yum -y install readline-devel
@@ -92,13 +84,11 @@ yum -y install pam-devel
 yum -y install munge-devel
 yum -y install munge-libs
 yum -y install rpm-build gcc openssl openssl-devel libssh2-devel pam-devel numactl numactl-devel
-yum install -y hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel gtk2-devel man2html
-yum install -y libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
-yum install -y mariadb-server mariadb-devel
-systemctl enable sshd.service
+yum -y install hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel gtk2-devel man2html
+yum -y install libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
+yum -y install mariadb-server mariadb-devel
 yum -y install screen tree rename
 yum -y groupinstall "Development Tools"
-systemctl set-default multi-user.target
 yum -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 yum -y install kernel-dev*
 yum -y install kernel-head*
@@ -141,7 +131,7 @@ yum -y install zsh
 
 
 if [ "$OS_VERSION" -ne 7 ];then
-        yum -y install bash-completion
+       yum -y install bash-completion
 fi
 
 ## disable firewall and selinux
@@ -150,11 +140,13 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 setenforce 0
 if [ "$OS_VERSION" -eq 6 ];then
 	servcie iptables stop
-	chkconfig iptables off	
+	chkconfig iptables off
+	chkconfig sshd on	
 else
 	systemctl stop firewalld.service
 	systemctl disable firewalld.service
 	systemctl disable kdump.service
+	systemctl enable sshd.service
 fi
 
 ### disable GUI
