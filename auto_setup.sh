@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Run as root user. 
 # Caution. 
 # In ubuntu, trojan run by nobody. 
