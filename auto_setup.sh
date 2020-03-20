@@ -4,6 +4,10 @@
 # Caution. 
 # In ubuntu, trojan run by nobody. 
 # In Debian buster, trojan runs by root.
+apt -y update
+apt -y upgrade
+apt -y install trojan
+
 
 ## please enter your domain name. 
 echo -e "Please input your domain name, then press enter to confirm."
@@ -25,6 +29,7 @@ certtool --generate-privkey --outfile server-key.pem
 certtool --generate-certificate --load-privkey server-key.pem --load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem --template server.tmpl --outfile server-cert.pem
 
 cp server*pem /etc/trojan/
+cd /etc/trojan/
 
 cp config.json config.json.original
 sed -i 's/\/path\/to\/certificate.crt/\/etc\/trojan\/server-cert.pem/g' config.json
