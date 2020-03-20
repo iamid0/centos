@@ -4,7 +4,7 @@
 # In Debian buster, trojan runs by root.
 
 ## please enter your domain name. 
-echo -e “Please input your domain name, then press enter to confirm.”
+echo -e "Please input your domain name, then press enter to confirm."
 read domain
 
 apt -y install gnutls-bin gnutls-doc wget
@@ -25,10 +25,10 @@ certtool --generate-certificate --load-privkey server-key.pem --load-ca-certific
 cp server*pem /etc/trojan/
 
 cp config.json config.json.original
-sed -i ‘s/\/path\/to\/certificate.crt/\/etc\/trojan\/server-cert.pem/g’ config.json
-sed -i ‘s/\/path\/to\/private.key/\/etc\/trojan\/server-key.pem/g’ config.json
-sed -i ‘s/password1/default_login1/g’ config.json
-sed -i ‘s/password2/default_login2/g’ config.json
+sed -i 's/\/path\/to\/certificate.crt/\/etc\/trojan\/server-cert.pem/g' config.json
+sed -i 's/\/path\/to\/private.key/\/etc\/trojan\/server-key.pem/g' config.json
+sed -i 's/password1/default_login1/g' config.json
+sed -i 's/password2/default_login2/g' config.json
 
 ## in ubuntu, trojan runs by nobody， 
 ## change the use to root
@@ -40,8 +40,8 @@ systemctl enable trojan
 systemctl stop trojan
 systemctl start trojan
 
-echo “The password is:”
-echo “default_login1” 
-echo “Or, “
-echo “default_login2”
-echo “Bye.”
+echo "The password is:"
+echo "default_login1"
+echo "Or, "
+echo "default_login2"
+echo "Bye."
