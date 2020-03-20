@@ -34,8 +34,13 @@ cd /etc/trojan/
 cp config.json config.json.original
 sed -i 's/\/path\/to\/certificate.crt/\/etc\/trojan\/server-cert.pem/g' config.json
 sed -i 's/\/path\/to\/private.key/\/etc\/trojan\/server-key.pem/g' config.json
-sed -i 's/password1/default_login1/g' config.json
-sed -i 's/password2/default_login2/g' config.json
+
+## generate radom password. 
+pass1=`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16 ; echo ''`
+pass2=`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16 ; echo ''`
+
+sed -i "s/password1/${pass1}/g" config.json
+sed -i "s/password2/${pass2}/g" config.json
 
 ## in ubuntu, trojan runs by nobody， 
 ## change the use to root
@@ -47,8 +52,17 @@ systemctl enable trojan
 systemctl stop trojan
 systemctl start trojan
 
+### enable bbr
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+
+echo "BBR enabled." 
+
+echo "Your server address is:"
+echo "${domain}"
 echo "The password is:"
-echo "default_login1"
+echo "${pass1}"
 echo "Or, "
-echo "default_login2"
+echo "${pass2}"
 echo "Bye."
