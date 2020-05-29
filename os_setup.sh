@@ -127,7 +127,7 @@ yum -y install p7zip
 yum -y install unar
 yum -y install zsh
 
-yum -y *openbabel*
+yum -y install *openbabel*
 
 
 
