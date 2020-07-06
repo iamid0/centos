@@ -54,6 +54,7 @@ yum makecache
 yum -y install epel-release
 
 ### install necessary packages
+yum -y install hwinfo*
 yum install psmisc gc gcc-c++  telnet  unzip vim curl  zip unzip -y  &>/dev/null
 yum install lrzsz lsof   sysstat dos2unix tree wget file tcpdump dstat fping iotop mtr rsync   expect  -y &>/dev/null
 yum -y install make
