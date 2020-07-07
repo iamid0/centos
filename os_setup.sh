@@ -127,6 +127,7 @@ yum -y install ghostscript
 yum -y install p7zip
 yum -y install unar
 yum -y install zsh
+yum -y libXScrnSaver*
 
 yum -y install *openbabel*
 
