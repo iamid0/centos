@@ -130,6 +130,7 @@ yum -y install zsh
 yum -y libXScrnSaver*
 yum -y install x11*
 yum -y install xorg*
+yum -y install libGLU*
 
 yum -y install *openbabel*
 
