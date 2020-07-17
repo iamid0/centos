@@ -135,6 +135,33 @@ yum -y install libGLU*
 yum -y install *openbabel*
 
 
+### install 32-bit libs.
+yum -y groupinstall "Compatibility libraries"
+yum -y install zlib.i686 #Y already present
+yum -y install libpng.i686 #N
+yum -y install fontconfig.i686 #N
+yum -y install libpng12-1.2.50-10.el7.i686 #N
+yum -y install libjpeg-turbo.i686 #N
+yum -y install libXau.i686 #N #N
+yum -y install libXdmcp.i686 #N
+yum -y install libXpm.i686 #N
+yum -y install libxml2.i686 #N
+yum -y install gd.i686 #N
+yum -y install libXmu.i686 #N
+yum -y install motif.i686 #N
+yum -y install libunwind.i686 #N
+yum -y install mesa-libGLU.i686 #N
+yum -y install libXaw.i686 libXi.i686 #N #N
+yum -y install libcom_err.i686 keyutils-libs.i686 libverto.i686 #N #N #N
+yum -y install krb5-libs.i686 #N
+yum -y install openssl-libs.i686 #Y (by preceding)
+yum -y install ncurses-libs.i686 #N
+yum -y install pcre-devel.i686 #N
+yum -y install freeglut #N
+yum -y install freeglut.i686 #for /usr/lib/libglut.so.3 #N
+yum -y install glib2.i686 #N
+yum -y install compat-libtiff3.i686 #N
+
 
 if [ "$OS_VERSION" -ne 7 ];then
        yum -y install bash-completion
