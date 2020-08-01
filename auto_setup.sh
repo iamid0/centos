@@ -43,7 +43,7 @@ sed -i "s/password1/${pass1}/g" config.json
 sed -i "s/password2/${pass2}/g" config.json
 
 ## in ubuntu, trojan runs by nobody， 
-## change the use to root
+## change the user to root
 sed -i 's/User=nobody/User=root/g' /lib/systemd/system/trojan.service
 
 
