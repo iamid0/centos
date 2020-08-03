@@ -28,6 +28,8 @@ echo "Set the hostname..."
 echo "The default hostname is node01."
 
 server_name=node01
+# backup the original /etc/hosts file
+cp /etc/hosts /etc/hosts.original
 
 if [ "$OS_VERSION" -eq 6 ];then
 	echo -e "NETWORKING=yes\nHOSTNAME=${Hostname}" >/etc/sysconfig/network
@@ -37,7 +39,10 @@ else
     echo  "127.0.0.1  `hostname`"  >   /etc/hosts 
 fi
 
-### setupyum source 
+# caution, there is no wget in mini installation
+yum -y install wget 
+
+### setup yum source 
 mkdir /etc/yum.repos.d/backup
 mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
 #mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
@@ -49,19 +54,21 @@ elif [ "$OS_VERSION" -eq 8 ];then
 	wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
 fi
 sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
+
 yum clean all
 yum makecache
 yum -y install epel-release
 
 ### install necessary packages
+### Maybe some lines are duplicated.
 yum -y install hwinfo*
-yum install psmisc gc gcc-c++  telnet  unzip vim curl  zip unzip -y  &>/dev/null
-yum install lrzsz lsof   sysstat dos2unix tree wget file tcpdump dstat fping iotop mtr rsync   expect  -y &>/dev/null
+yum -y install psmisc gc gcc-c++  telnet  unzip vim curl  zip unzip &>/dev/null
+yum -y install lrzsz lsof   sysstat dos2unix tree wget file tcpdump dstat fping iotop mtr rsync   expect &>/dev/null
 yum -y install make
-yum -y install gdb     # 代码调试器
-yum -y install cmake   # Cmake
-yum -y install git     # 版本控制
-yum -y install git-svn # git的svn插件
+yum -y install gdb     
+yum -y install cmake   
+yum -y install git   
+yum -y install git-svn 
 yum -y install ntfs-3g
 yum -y install java
 yum -y install clang             # clang编译器
@@ -89,12 +96,13 @@ yum -y install hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncur
 yum -y install libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
 yum -y install mariadb-server mariadb-devel
 yum -y install screen tree rename
+
 yum -y groupinstall "Development Tools"
 yum -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 yum -y install kernel-dev*
 yum -y install kernel-head*
 yum -y install kernel*
-yum -y install epel-release
+
 yum -y install gcc
 yum -y install gcc-c++
 yum -y install gcc-gfortran
@@ -102,14 +110,7 @@ yum -y install compat-gcc-44
 yum -y install compat-gcc-44-c++
 yum -y install compat-gcc-44-gfortran
 yum -y install compat-libf2c-34
-yum -y install make
-yum -y install gdb
-yum -y install cmake
-yum -y install git
-yum -y install ntfs-3g
-yum -y install java
-yum -y install clang
-yum -y install clang-analyzer
+
 yum -y install environment-modules
 yum -y install openmpi openmpi-devel
 yum -y install mpich mpich-devel
