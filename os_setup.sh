@@ -4,6 +4,18 @@
 # bash os_setup.sh
 # maybe not work with centOS6
 
+# in some case, it's better to use the everyting.iso. 
+
+# For example, 
+# mkdir -p /media/CentOS/
+# mount -o loop CentOS-7-x86_64-Everything-2003.iso /media/CentOS
+
+# mkdir /etc/yum.repos.d/backup
+# mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
+# cp /etc/yum.repos.d/backup/CentOS-Media.repo /etc/yum.repos.d/
+# sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/CentOS-Media.repo
+# Then, most of the stuff will be installed from DVD, much faster. 
+
 
 Date1=`date +'%F-%H:%M'`
 
