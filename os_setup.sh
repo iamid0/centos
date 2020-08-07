@@ -211,4 +211,5 @@ echo "enable GUI"
 systemctl set-default graphical.target
 fi
 
-
+### start GUI without reboot
+# systemctl isolate graphical
