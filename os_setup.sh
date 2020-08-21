@@ -147,6 +147,9 @@ yum -y install libGLU*
 
 yum -y install *openbabel*
 
+yum -y libXScrnSaver
+
+
 
 ### install 32-bit libs.
 yum -y groupinstall "Compatibility libraries"
