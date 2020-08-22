@@ -177,6 +177,7 @@ yum -y install freeglut #N
 yum -y install freeglut.i686 #for /usr/lib/libglut.so.3 #N
 yum -y install glib2.i686 #N
 yum -y install compat-libtiff3.i686 #N
+yum -y install glibc*686
 
 
 if [ "$OS_VERSION" -ne 7 ];then
