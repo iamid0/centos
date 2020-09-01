@@ -147,7 +147,7 @@ yum -y install libGLU*
 
 yum -y install *openbabel*
 
-yum -y libXScrnSaver
+yum -y install libXScrnSaver
 
 
 
