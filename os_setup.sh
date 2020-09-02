@@ -149,6 +149,10 @@ yum -y install *openbabel*
 
 yum -y install libXScrnSaver
 
+## may be needed when compiling vasp with intel2019
+yum -y install libfabric
+
+
 
 
 ### install 32-bit libs.
