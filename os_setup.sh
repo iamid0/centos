@@ -152,7 +152,11 @@ yum -y install libXScrnSaver
 ## may be needed when compiling vasp with intel2019
 yum -y install libfabric
 
-
+## Maybe needed if there is Mellanox 10Gbe network controller installed.
+yum -y install infiniband-diags perftest gperf
+yum -y groupinstall "Infiniband Support"
+systemctl start rdma
+systemctl enable rdma
 
 
 ### install 32-bit libs.
