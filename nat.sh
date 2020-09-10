@@ -12,6 +12,8 @@ WAN="enp3s0"
 
 LANNET="192.168.110.0/24"
 
+### Do not edit the following contents. 
+
 export LAN WAN LANNET
 
 ### Flush the original rules
