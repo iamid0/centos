@@ -1,5 +1,12 @@
 #!/bin/bash
 
+## to burn all cpu cores with SuperPI. 
+
+## how to user? 
+## wget -O - https://raw.githubusercontent.com/iamid0/centos/master/pi.sh | bash
+# or save this script as pi.sh, than, bash pi.sh 
+
+
 # get CPU number
 cpu_num=`cat /proc/cpuinfo | grep 'processor' | wc -l `
 # export x=${cpu_num}
