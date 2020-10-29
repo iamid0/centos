@@ -3,7 +3,7 @@
 # get CPU number
 cpu_num=`cat /proc/cpuinfo | grep 'processor' | wc -l `
 # export x=${cpu_num}
-export x=$((${cpu_num}*4))
+export x=$((${cpu_num}*5))
 
 echo -e "I will start \033[1;31m ${x}\033[0;35m\033[0m threads to run SuperPI."
 echo -e "\033[1;31mNeeds several hours, maybe. \033[0;35m\033[0m"
