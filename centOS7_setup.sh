@@ -233,97 +233,7 @@ yum -y install gnu-free*fonts
 yum -y install google*fonts
 
 
-Intel2020u1, only the following componets. 
-/opt/apps/intel2020u1
 
-   1. Accept and continue [ default ]
-   2. [None] Intel Trace Analyzer and Collector 2020 Update 1
-   3. [None] Intel Cluster Checker 2019 Update 8
-   4. [None] Intel VTune Profiler 2020 Update 1
-   5. [None] Intel Inspector 2020 Update 1
-   6. [None] Intel Advisor 2020 Update 1
-   7. [All] Intel C++ Compiler 19.1 Update 1
-   8. [All] Intel Fortran Compiler 19.1 Update 1
-   9. [All] Intel Math Kernel Library 2020 Update 1 for C/C++
-   10.[All] Intel Math Kernel Library 2020 Update 1 for Fortran
-   11.[None] Intel Integrated Performance Primitives 2020 Update 1
-   12.[All] Intel Threading Building Blocks 2020 Update 2
-   13.[None] Intel Data Analytics Acceleration Library 2020 Update 1
-   14.[All] Intel MPI Library 2019 Update 7
-   15.[None] GNU* GDB 8.3
-   16.[None] Intel(R) Distribution for Python*
-
- Install location:
-    /opt/apps/intel2020u1
-
-
-The following components will be installed:
-    Intel C++ Compiler 19.1 Update 1                                       1.2GB
-        Intel C++ Compiler                                                 1.1GB
-
-    Intel Fortran Compiler 19.1 Update 1                                   436MB
-        Intel Fortran Compiler                                             435MB
-
-    Intel Math Kernel Library 2020 Update 1 for C/C++                      1.9GB
-        Intel MKL core libraries for C/C++                                  10MB
-        Cluster support for C/C++                                           11MB
-        Intel TBB threading support                                         54MB
-        PGI* C/C++ compiler support                                         11MB
-        GNU* C/C++ compiler support                                         74MB
-
-    Intel Math Kernel Library 2020 Update 1 for Fortran                    1.8GB
-        Intel MKL core libraries for Fortran                                 6MB
-        Cluster support for Fortran                                          7MB
-        GNU* Fortran compiler support                                      145MB
-        Fortran 95 interfaces for BLAS and LAPACK                           33MB
-
-    Intel Threading Building Blocks 2020 Update 2                          139MB
-        Intel TBB                                                          124MB
-
-    Intel MPI Library 2019 Update 7                                        1.0GB
-        Intel MPI Benchmarks                                                 2MB
-        Intel MPI Library for applications running on Intel(R) 64 Architecture 1.0GB
-
-   Install space required:  4.2GB
-
-
---------------------------------------------------------------------------------
-Install location:
-    /opt/apps/intel2019u5
-
-Component(s) selected:
-    Intel C++ Compiler 19.0 Update 5                                       840MB
-        Intel C++ Compiler
-
-    Intel Fortran Compiler 19.0 Update 5                                   331MB
-        Intel Fortran Compiler
-
-    Intel Math Kernel Library 2019 Update 5 for C/C++                      1.9GB
-        Intel MKL core libraries for C/C++
-        Cluster support for C/C++
-        Intel TBB threading support
-        PGI* C/C++ compiler support
-        GNU* C/C++ compiler support
-
-    Intel Math Kernel Library 2019 Update 5 for Fortran                    1.8GB
-        Intel MKL core libraries for Fortran
-        Cluster support for Fortran
-        GNU* Fortran compiler support
-        Fortran 95 interfaces for BLAS and LAPACK
-
-    Intel Threading Building Blocks 2019 Update 8                           59MB
-        Intel TBB
-
-    Intel MPI Library 2019 Update 5                                        806MB
-        Intel MPI Benchmarks 2019 Update 4
-        Intel MPI Library for applications running on Intel(R) 64 Architecture
-
-   Install space required:  3.8GB
-
-Installation Target:
-    Install on the current system only
-
---------------------------------------------------------------------------------
 
    #### Install scl gcc9
    yum -y install centos-release-scl
@@ -332,20 +242,17 @@ Installation Target:
 
 
 
+# to enable mudole command. 
+source /etc/profile.d/modules.sh
 
-
-### cmake 3 installed to 
-## /opt/apps/cmake-3.14.0-Linux-x86_64
 
 ## GNU MPI versions
 # mpi/mpich-3.0-x86_64 mpi/mpich-x86_64     mpi/openmpi3-x86_64  mpi/openmpi-x86_64
-module load mpi/openmpi-x86_64
+# module load mpi/openmpi-x86_64
 
-module load mpi/openmpi3-x86_64
-module load mpi/mpich-3.0-x86_64
+# module load mpi/openmpi3-x86_64
+# module load mpi/mpich-3.0-x86_64
 
-
-## the following boost versions are OK
 
 
 
