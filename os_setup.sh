@@ -37,9 +37,9 @@ OS_VERSION=`cat /etc/system-release | awk '{print $(NF-1)}' | awk -F"." '{print 
 # set hostname
 # the default hostname is node01
 echo "Set the hostname..."
-echo "The default hostname is node01."
+echo "The default hostname is hpc4you."
 
-server_name=node01
+export server_name=hpc4you
 # backup the original /etc/hosts file
 cp /etc/hosts /etc/hosts.original
 
@@ -51,31 +51,38 @@ else
     echo  "127.0.0.1  `hostname`"  >   /etc/hosts 
 fi
 
+echo "Please wait for a while ..."
+echo "It's a bit long..."
+echo ""
+
 # caution, there is no wget in mini installation
 yum -y install wget 
 
 ### setup yum source 
-mkdir /etc/yum.repos.d/backup
-mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
+#mkdir /etc/yum.repos.d/backup
+#mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
 
 # switch to 163.repo
 #mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-if [ "$OS_VERSION" -eq 6 ];then
-	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-	wget -O /etc/yum.repos.d/CentOS6-Base-163.repo https://mirrors.163.com/.help/CentOS6-Base-163.repo
-elif [ "$OS_VERSION" -eq 7 ];then
-	wget -O /etc/yum.repos.d/CentOS7-Base-163.repo https://mirrors.163.com/.help/CentOS7-Base-163.repo
-elif [ "$OS_VERSION" -eq 8 ];then
-	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
-	# set to tuna
-	cp /etc/yum.repos.d/backup/CentOS-Linux-*.repo /etc/yum.repos.d/
-	sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
-         -i.bak \
-         /etc/yum.repos.d/CentOS-*.repo
-fi
+#if [ "$OS_VERSION" -eq 6 ];then
+#	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+#	wget -O /etc/yum.repos.d/CentOS6-Base-163.repo https://mirrors.163.com/.help/CentOS6-Base-163.repo
+#elif [ "$OS_VERSION" -eq 7 ];then
+#	wget -O /etc/yum.repos.d/CentOS7-Base-163.repo https://mirrors.163.com/.help/CentOS7-Base-163.repo
+#elif [ "$OS_VERSION" -eq 8 ];then
+#	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
+#	# set to tuna
+#	cp /etc/yum.repos.d/backup/CentOS-Linux-*.repo /etc/yum.repos.d/
+#	sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+#         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
+#         -i.bak \
+#         /etc/yum.repos.d/CentOS-*.repo
+#fi
 # aliyun mirror, sometime, fucks. 
 #sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
+
+# the default repo is doing well in most cases. 
+# no need to adjust the repo. 
 
 yum clean all
 yum makecache
@@ -235,3 +242,5 @@ fi
 
 ### start GUI without reboot
 # systemctl isolate graphical
+
+echo "Well Done. Please reboot the server."
