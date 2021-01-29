@@ -57,15 +57,25 @@ yum -y install wget
 ### setup yum source 
 mkdir /etc/yum.repos.d/backup
 mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
+
+# switch to 163.repo
 #mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 if [ "$OS_VERSION" -eq 6 ];then
-	wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+	wget -O /etc/yum.repos.d/CentOS6-Base-163.repo https://mirrors.163.com/.help/CentOS6-Base-163.repo
 elif [ "$OS_VERSION" -eq 7 ];then
-	wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+	wget -O /etc/yum.repos.d/CentOS7-Base-163.repo https://mirrors.163.com/.help/CentOS7-Base-163.repo
 elif [ "$OS_VERSION" -eq 8 ];then
-	wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
+	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
+	# set to tuna
+	cp /etc/yum.repos.d/backup/CentOS-Linux-*.repo /etc/yum.repos.d/
+	sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-*.repo
 fi
-sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
+# aliyun mirror, sometime, fucks. 
+#sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
 
 yum clean all
 yum makecache
