@@ -57,35 +57,6 @@ echo ""
 
 # caution, there is no wget in mini installation
 yum -y install wget 
-
-### setup yum source 
-#mkdir /etc/yum.repos.d/backup
-#mv /etc/yum.repos.d/Cent*.repo /etc/yum.repos.d/backup
-
-# switch to 163.repo
-#mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-#if [ "$OS_VERSION" -eq 6 ];then
-#	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
-#	wget -O /etc/yum.repos.d/CentOS6-Base-163.repo https://mirrors.163.com/.help/CentOS6-Base-163.repo
-#elif [ "$OS_VERSION" -eq 7 ];then
-#	wget -O /etc/yum.repos.d/CentOS7-Base-163.repo https://mirrors.163.com/.help/CentOS7-Base-163.repo
-#elif [ "$OS_VERSION" -eq 8 ];then
-#	#wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo
-#	# set to tuna
-#	cp /etc/yum.repos.d/backup/CentOS-Linux-*.repo /etc/yum.repos.d/
-#	sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-#         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
-#         -i.bak \
-#         /etc/yum.repos.d/CentOS-*.repo
-#fi
-# aliyun mirror, sometime, fucks. 
-#sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
-
-# the default repo is doing well in most cases. 
-# no need to adjust the repo. 
-
-yum clean all
-yum makecache
 yum -y install epel-release
 
 ### install necessary packages
@@ -100,8 +71,8 @@ yum -y install git
 yum -y install git-svn 
 yum -y install ntfs-3g
 yum -y install java
-yum -y install clang             # clang编译器
-yum -y install clang-analyzer    # clang静态分析器
+yum -y install clang           
+yum -y install clang-analyzer   
 yum -y install openmpi openmpi-devel
 yum -y install mpich mpich-devel
 yum -y install perl-Parallel-ForkManager
@@ -125,6 +96,7 @@ yum -y install hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncur
 yum -y install libibmad libibumad perl-Switch perl-ExtUtils-MakeMaker
 yum -y install mariadb-server mariadb-devel
 yum -y install screen tree rename
+yum -y install bash-completion
 
 yum -y groupinstall "Development Tools"
 yum -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
@@ -204,10 +176,6 @@ yum -y install glib2.i686 #N
 yum -y install compat-libtiff3.i686 #N
 yum -y install glibc*686
 
-
-if [ "$OS_VERSION" -ne 7 ];then
-       yum -y install bash-completion
-fi
 
 ## disable firewall and selinux
 echo "disable firewall & selinux"
