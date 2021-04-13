@@ -2,7 +2,7 @@
 # initialize centOS 
 # How to? 
 # bash os_setup.sh
-# maybe not work with centOS6
+# maybe not work with centOS6??
 
 # in some case, it's better to use the everyting.iso. 
 

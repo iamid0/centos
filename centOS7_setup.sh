@@ -52,6 +52,7 @@ yum -y install kernel-dev*
 yum -y install kernel-head*
 yum -y install kernel*
 
+# maybe duplicated....
 yum -y install gcc
 yum -y install gcc-c++
 yum -y install gcc-gfortran
@@ -209,7 +210,6 @@ yum -y install libXi-devel libXinerama-devel libX11-devel
 
 # enable exfat support
 yum group install 'Development Tools'
-
 yum install fuse-devel gcc autoconf automake git
 cd /usr/local/src && git clone https://github.com/relan/exfat.git
 cd exfat
@@ -235,11 +235,9 @@ yum -y install google*fonts
 
 
 
-   #### Install scl gcc9
-   yum -y install centos-release-scl
-   yum -y install devtoolset-9
-
-
+#### Install scl gcc9
+yum -y install centos-release-scl
+yum -y install devtoolset-9
 
 
 # to enable mudole command. 
