@@ -164,16 +164,12 @@ yum -y install glibc*686
 echo "disable firewall & selinux"
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 setenforce 0
-if [ "$OS_VERSION" -eq 6 ];then
-	servcie iptables stop
-	chkconfig iptables off
-	chkconfig sshd on	
-else
-	systemctl stop firewalld.service
-	systemctl disable firewalld.service
-	systemctl disable kdump.service
-	systemctl enable sshd.service
-fi
+
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+systemctl disable kdump.service
+systemctl enable sshd.service
+
 
 ### disable GUI
 echo -e "Enable GUI or no GUI? y/n"
