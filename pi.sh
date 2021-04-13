@@ -2,9 +2,9 @@
 
 ## to burn all cpu cores with SuperPI. 
 
-## how to user? 
-## wget -O - https://raw.githubusercontent.com/iamid0/centos/master/pi.sh | bash
-# or save this script as pi.sh, than, bash pi.sh 
+## how to? 
+# timeout 5h bash pi.sh 
+# default for 5 hours. 
 
 
 # get CPU number
